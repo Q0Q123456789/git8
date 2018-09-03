@@ -7,8 +7,12 @@
                     <Icon type="ios-navigate"></Icon>
                     Item 1
                 </template>
-                <MenuItem name="1-1"><router-link to="/home_page">Home</router-link></MenuItem>
-                <MenuItem name="1-2"><router-link to="/about_page">About</router-link></MenuItem>
+                <MenuItem name="1-1">
+                    <router-link to="/home_page">Home</router-link>
+                </MenuItem>
+                <MenuItem name="1-2">
+                    <router-link to="/about_page">About</router-link>
+                </MenuItem>
             </Submenu>
         </Menu>
     </Sider>
