@@ -15,6 +15,16 @@ export const getToken = () => {
   else return false
 }
 
+export function inArray(arr, obj) {
+  let i = arr.length
+  while (i--) {
+      if (arr[i] == obj) {
+          return i
+      }
+  }
+  return false
+}
+
 export const hasChild = (item) => {
   return item.children && item.children.length !== 0
 }

@@ -20,6 +20,7 @@
 </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "login",
   data() {
@@ -55,12 +56,28 @@ export default {
   components: {},
   mounted() {},
   methods: {
+    ...mapActions([
+      'handleLogin',
+      'getUserInfo'
+    ]),
     handleSubmit(name) {
-      this.$refs[name].validate(valid => {
+      const that = this;
+      const data = {
+        username: this.formInline.username,
+        password: this.formInline.password
+      }
+      that.$refs[name].validate(valid => {
         if (valid) {
-        //   this.$Message.success("Success!");
+          // that.$Message.success("Success!");
+          this.handleLogin(data).then(res => {
+            if (res.responseCode == '10001') {
+              
+            } else {
+              that.$Message.error(res.responseMsg)
+            }
+          });
         } else {
-          this.$Message.error("错误!");
+          that.$Message.error("错误!");
         }
       });
     }
@@ -83,10 +100,10 @@ export default {
     position: absolute;
     top: 30%;
     left: 20%;
-    padding:70px 20px;
+    padding: 70px 20px;
   }
-  .ivu-form-item{
-      width: 100%;
+  .ivu-form-item {
+    width: 100%;
   }
 }
 </style>

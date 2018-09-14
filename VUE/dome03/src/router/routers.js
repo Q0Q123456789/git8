@@ -5,7 +5,8 @@ export default [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login.vue')
+    component: () => import('@/views/login.vue'),
+    hidden: true
   },
   {
     path: '/',
@@ -14,16 +15,17 @@ export default [
     component: Main,
     meta: {
       hideInMenu: true,
-      notCache: true
+      notCache: true,
+      title: '首页',
+      name:'1'
     },
     children: [
       {
         path: '/home_page',
         name: 'home_page',
         meta: {
-          hideInMenu: true,
           title: '首页',
-          notCache: true
+          name: '1-1'
         },
         component: () => import('@/views/Home/Home.vue')
       }
@@ -33,10 +35,19 @@ export default [
     path: '/About',
     name: 'About',
     component: Main,
+    meta: {
+      title: '子页',
+      notCache: true,
+      name:'2'
+    },
     children: [
       {
         path: '/about_page',
         name: 'about_page',
+        meta: {
+          title: '子页',
+          name: '2-1'
+        },
         component: () => import('@/views/About/About.vue')
       }
     ]

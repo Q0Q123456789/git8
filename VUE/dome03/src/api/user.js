@@ -1,12 +1,12 @@
 import axios from '@/config/api.request'
 
-export const login = ({ userName, password }) => {
+export const login = ({ username, password }) => {
   const data = {
-    userName,
+    username,
     password
   }
   return axios.request({
-    url: 'login',
+    url: '/performance/model/login',
     data,
     method: 'post'
   })

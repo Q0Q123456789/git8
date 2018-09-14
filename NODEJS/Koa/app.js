@@ -58,7 +58,7 @@ Api.post('/user',async (ctx ,next) => {
     }
     ctx.body = config.Success;
 });
-
+ 
 Api.post('/register',Ajax);
 
 app.use( Api.routes());

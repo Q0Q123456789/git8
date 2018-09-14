@@ -1,5 +1,5 @@
 import HttpRequest from '@/config/axios'
-const baseUrl = process.env.NODE_ENV === 'development' ? 'https://www.xiaomu1314.xin' : 'http://127.0.0.1:8030'
+const baseUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8030' : 'https://api.xiaomu1314.xin'
 
 const axios = new HttpRequest(baseUrl)
 export default axios

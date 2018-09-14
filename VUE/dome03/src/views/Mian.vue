@@ -1,17 +1,14 @@
 <template>
 <div id='mian'>
     <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
-        <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
-            <Submenu name="1">
+        <Menu accordion :active-name="activeName" theme="dark" width="auto" :open-names="openName" >
+            <Submenu  v-for="(item,index) in routes" v-if="!item.hidden&&item.children" :key="index" :name="item.meta.name">
                 <template slot="title">
                     <Icon type="ios-navigate"></Icon>
-                    Item 1
+                    {{item.meta.title}}
                 </template>
-                <MenuItem name="1-1">
-                    <router-link to="/home_page">Home</router-link>
-                </MenuItem>
-                <MenuItem name="1-2">
-                    <router-link to="/about_page">About</router-link>
+                <MenuItem v-for="(iten,index) in item.children" :name="iten.meta.name" :key="index">
+                    <router-link :to="iten.path">{{iten.meta.title}}</router-link>
                 </MenuItem>
             </Submenu>
         </Menu>
@@ -32,13 +29,41 @@
 </div>
 </template>
 <script>
+import { inArray } from "@/config/util"
 export default {
   name: "mian",
   data() {
-    return {};
+    return {
+        activeName:1,
+        openName:['1']
+    };
   },
   components: {},
-  mounted() {},
+  computed:{
+    routes() {
+        const path = this.$router.options.routes
+        path.forEach((item, index) => {
+            if (item.hidden !== true && item.name !== 'dashboard') {
+                // if ( inArray(this.adminNode, item.name) === false ) {
+                //     path[index].hidden = true
+                // }
+                // if (item.children.length > 0) {
+                //     const child = item.children
+                //     child.forEach((item2, index2) => {
+                //         if (inArray(this.adminNode, item2.name) === false) {
+                //             path[index].children[index2].hidden = true
+                //         }
+                //     })
+                // }
+                
+            }
+        })
+        return path
+    }
+  },
+  mounted() {
+
+  },
   methods: {}
 };
 </script>

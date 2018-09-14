@@ -29,16 +29,18 @@ export default {
   },
   actions: {
     // 登录
-    handleLogin ({ commit }, {userName, password}) {
-      userName = userName.trim()
+    handleLogin ({ commit }, {username, password}) {
+      username = username.trim()
       return new Promise((resolve, reject) => {
         login({
-          userName,
+          username,
           password
         }).then(res => {
           const data = res.data
-          commit('setToken', data.token)
-          resolve()
+          if(data.responseCode == '10001'){
+            commit('setToken', data.data.token)
+          }
+          resolve(data)
         }).catch(err => {
           reject(err)
         })
