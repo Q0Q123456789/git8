@@ -1,0 +1,17 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+ul,li{
+  list-style: none;
+}
+html{
+  font-size: 625%;
+}
+div{
+  font-size: .1rem;
+}
+a{
+  text-decoration: none;
+}
