@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {NavLink } from "react-router-dom";
+import common from './config/common';
 
 class App extends Component {
   constructor(props){
@@ -10,7 +11,8 @@ class App extends Component {
     }
   }
   componentWillMount(){
-
+    console.log(common)
+    common.fontSizeRem();
   }
   tabclick(index){
       this.setState({
