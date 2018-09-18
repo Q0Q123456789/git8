@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.less';
+import 'antd/dist/antd.less';
 import {NavLink } from "react-router-dom";
 import common from './config/common';
 
@@ -11,7 +12,8 @@ class App extends Component {
     }
   }
   componentWillMount(){
-    console.log(common)
+    console.log(this.props)
+    console.log(this.state.active)
     common.fontSizeRem();
   }
   tabclick(index){
@@ -21,13 +23,13 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className="App" id='app'>
       {this.props.children}
-        <ul>
-          <li onClick={() => this.tabclick('1')} ><NavLink to='/' exact  activeClassName="pitchOn">首页</NavLink></li>
-          <li onClick={() => this.tabclick('2')} ><NavLink to='/News' activeClassName="pitchOn">子页</NavLink></li>
-          <li onClick={() => this.tabclick('3')} ><NavLink to='/Header'activeClassName="pitchOn">子页</NavLink></li>
-          <li onClick={() => this.tabclick('4')} ><NavLink to='/Footer' activeClassName="pitchOn">子页</NavLink></li>
+        <ul className="Navigation">
+          <li ><NavLink to='/' exact  activeClassName="pitchOn">首页</NavLink></li>
+          <li ><NavLink to='/News' activeClassName="pitchOn">子页</NavLink></li>
+          <li ><NavLink to='/Header'activeClassName="pitchOn">子页</NavLink></li>
+          <li ><NavLink to='/Footer' activeClassName="pitchOn">子页</NavLink></li>
         </ul>
       </div>
     );
