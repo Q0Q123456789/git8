@@ -1,32 +1,89 @@
 import React, { Component } from 'react';
 import './home.less';
+import logo from '../logo.svg'
 import {Link } from "react-router-dom";
 
-import { Input } from 'antd';
+import { SearchBar, Grid } from 'antd-mobile';
 
-const Search = Input.Search;
 class Home extends Component {
   constructor(props){
     super(props)
     this.state={
       active:'123456',
-      title:'张萌这个吊毛'
+      title:'张萌这个吊毛',
+      list:[
+        {name:'富强',vlaue:'1',id:1},
+        {name:'民主',vlaue:'2',id:2},
+        {name:'文明',vlaue:'3',id:3},
+        {name:'和谐',vlaue:'4',id:4},
+        {name:'自由',vlaue:'5',id:5},
+        {name:'平等',vlaue:'6',id:6},
+        {name:'公正',vlaue:'7',id:7},
+        {name:'法治',vlaue:'8',id:8},
+        {name:'爱国',vlaue:'9',id:9},
+        {name:'敬业',vlaue:'10',id:10},
+        {name:'诚信',vlaue:'11',id:11},
+        {name:'友善',vlaue:'12',id:12},
+      ],
+      inputValue:''
     }
+  }
+  componentWillMount(){
+    console.log(this.dateTime())
+    console.log(this.props)
+  }
+  componentDidMount() {
+    // this.autoFocusInst.focus();
   }
   
   render() {
+    // const items = [];
+    // this.state.list.map(function(item){
+    //   items.push(<Link to={'/Home/HomeHeader/'+ item.id +'/' + item.name} >{item.name}</Link>);
+    // })
+    const data = this.state.list.map((_val, i) => ({
+      name: _val.name,
+      vlaue: _val.vlaue,
+      id: _val.id
+    }));
+    const dateTime = this.dateTime();
     return (
+      
         <div id='home' className="home">
           <nav className="nav">
-            <Search placeholder="input search text" onSearch={value => this.Input(value)} style={{ width: 200 }} />
+            <SearchBar placeholder="搜索" ref={ref => this.autoFocusInst = ref} onSubmit={value => this.Input(value)}  onBlur={() => console.log(123)} />
           </nav>
-            {this.props.children}
-            <Link to={'/Home/HomeHeader/'+ this.state.active +'/' + this.state.title} >111</Link>
-        </div>  
+          <div className='mian'>
+            <div>
+            <Grid data={data} hasLine={true} columnNum={4} renderItem={ Item => (
+            <Link to={'/Home/HomeHeader/'+ Item.id +'/' + Item.name +'/'+ dateTime} onClick={() => this.visible(false) } >{Item.name}</Link>
+            )} />
+              {/* <ul className='mian_ul'> */}
+                {/* {items} */}
+                  {/* {this.state.list.map(function (item,key){ */}
+                    {/* return <li key={key} ><Link to={'/Home/HomeHeader/'+ item.id +'/' + item.name +'/'+ dateTime} >{item.name}</Link></li> */}
+                  {/* })} */}
+              {/* </ul> */}
+            </div>
+          </div>
+          <div className='input_value'>{this.state.inputValue}</div>
+          <div className='logo'><img src={logo} className="App-logo" alt="logo"/></div>
+          {this.props.children}
+        </div>
     );
   }
   Input(value){
-    console.log(value)
+    this.setState({
+      inputValue:value
+    })
+  }
+  dateTime(){
+    let date = new Date();
+    let Time = date.toLocaleTimeString();
+    return Time;
+  }
+  visible(v){
+    this.props.visible(v);
   }
 }
 

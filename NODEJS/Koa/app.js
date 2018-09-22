@@ -9,7 +9,7 @@ const logger = require('koa-logger');
 const cors = require('koa2-cors');
 const DB = require('./db/db.js');
 const config = require('./db/config.js');
-const Ajax = require('./api/register.js');
+const register = require('./api/register.js');
 const app = new Koa();
 
 app.use(convert(bodyparser));
@@ -23,18 +23,7 @@ app.use(co.wrap(function* (ctx, next) {
     const ms = new Date() - start;
     console.log(`${ ctx.method } ${ ctx.url } - ${ ms }ms`);
 }));
-Api.get('/login',function (ctx,next) {
 
-    ctx.body = {
-        res:'100001',
-        req:'成功！',
-        list:[{
-            username:'admin',
-            password:'123456',
-            sex:'男'
-        }]
-    }
-});
 Api.get('/api',async (ctx,next) => {
     let sql = 'SELECT * from login';
     await DB.find(sql).then(res =>{
@@ -48,22 +37,25 @@ Api.get('/api',async (ctx,next) => {
 
 Api.post('/user',async (ctx ,next) => {
     let sql = 'INSERT into login(name,password) VALUES(?,?)';
-    let params = ['admin','123456'];
+    let params = ['admin1','123456'];
     let data;
     try {
         data = await DB.update(sql,params);
+        console.log(data);
         config.Success.data = data;
     } catch (e) {
         console.log(e);
     }
     ctx.body = config.Success;
 });
- 
-Api.post('/register',Ajax);
+//添加用户
+Api.post('/register',register);
 
-app.use( Api.routes());
+app.use(Api.routes());
+
 app.on('error',function(err,ctx){
     log.error('server error',err,ctx);
 });
 
 app.listen(3000);
+console.log('nodeJS------port:3000-------启动成功！');
