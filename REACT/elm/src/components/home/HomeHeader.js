@@ -4,6 +4,7 @@ import './header.less'
 
 const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt=""/>;
+const Action = require('../../stores/action');
 
 class HomeHeader extends Component {
   constructor(props){
@@ -18,9 +19,9 @@ class HomeHeader extends Component {
     this.setState({
       title:this.props.match.params
     })
+    Action.addNewItem(false); //隐藏导航栏
   };
   onSelect = (opt) => {
-    // console.log(opt.props.value);
     this.setState({
       visible: true,
       selected: opt.props.value,
@@ -34,9 +35,9 @@ class HomeHeader extends Component {
   render() {
     return (
       <div className="Header" id='Header'>
-      <NavBar key='1' mode="light" icon={<Icon type="left" />} onLeftClick={() => this.onBack()} 
+      <NavBar key='1' mode="light" icon={<Icon type="left" />} onLeftClick={() => this.onBack(true)} 
         rightContent={[
-          <Popover mask key='1'
+        <Popover mask key='1'
           overlayClassName="fortest"
           overlayStyle={{ color: 'currentColor' }}
           visible={this.state.visible}
@@ -55,26 +56,26 @@ class HomeHeader extends Component {
           onSelect={this.onSelect}
         >
           <div style={{
-            height: '100%',
-            padding: '0 15px',
-            marginRight: '-15px',
-            display: 'flex',
-            alignItems: 'center',
-          }}
+              height: '100%',
+              padding: '0 15px',
+              marginRight: '-15px',
+              display: 'flex',
+              alignItems: 'center',
+            }}
           >
             <Icon type="ellipsis" />
           </div>
         </Popover>
         ]}
       >{this.state.title.title}</NavBar>
-            
             <div className='date_time'>{this.state.title.dateTime}</div>
       </div>
     );
   }
   //返回
-  onBack(){
+  onBack(v){
     window.history.back();
+    Action.addNewItem(v);
   }
 }
 

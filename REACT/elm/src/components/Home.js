@@ -5,6 +5,8 @@ import {Link } from "react-router-dom";
 
 import { SearchBar, Grid } from 'antd-mobile';
 
+const Action = require('../stores/action');
+
 class Home extends Component {
   constructor(props){
     super(props)
@@ -29,8 +31,7 @@ class Home extends Component {
     }
   }
   componentWillMount(){
-    console.log(this.dateTime())
-    console.log(this.props)
+
   }
   componentDidMount() {
     // this.autoFocusInst.focus();
@@ -56,14 +57,13 @@ class Home extends Component {
           <div className='mian'>
             <div>
             <Grid data={data} hasLine={true} columnNum={4} renderItem={ Item => (
-            <Link to={'/Home/HomeHeader/'+ Item.id +'/' + Item.name +'/'+ dateTime} onClick={() => this.visible(false) } >{Item.name}</Link>
+            <div onClick={() => this.changeVisible(false) }><Link to={'/Home/HomeHeader/'+ Item.id +'/' + Item.name +'/'+ dateTime}  >{Item.name}</Link></div>
             )} />
               {/* <ul className='mian_ul'> */}
                 {/* {items} */}
                   {/* {this.state.list.map(function (item,key){ */}
                     {/* return <li key={key} ><Link to={'/Home/HomeHeader/'+ item.id +'/' + item.name +'/'+ dateTime} >{item.name}</Link></li> */}
-                  {/* })} */}
-              {/* </ul> */}
+                  {/* })} </ul> */}
             </div>
           </div>
           <div className='input_value'>{this.state.inputValue}</div>
@@ -82,8 +82,8 @@ class Home extends Component {
     let Time = date.toLocaleTimeString();
     return Time;
   }
-  visible(v){
-    this.props.visible(v);
+  changeVisible(v){
+    Action.addNewItem(v);
   }
 }
 
