@@ -55,9 +55,6 @@ class News extends Component {
     })
     .catch(error => console.log(error));
   };
-  changeVisible(v){
-    // Action.addNewItem(v);
-  };
 }
 
 export default News;
