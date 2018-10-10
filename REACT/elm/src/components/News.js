@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {Link } from "react-router-dom";
 import axios from 'axios';
+import { Toast } from 'antd-mobile';
 import './news.less'
 
 class News extends Component {
@@ -40,6 +41,7 @@ class News extends Component {
   };
   $http(){
     const that = this;
+    that.loadingToast();
     let url = 'http://www.phonegap100.com/appapi.php';
     axios.get(url,{
       params:{
@@ -55,6 +57,9 @@ class News extends Component {
     })
     .catch(error => console.log(error));
   };
+  loadingToast(){
+    Toast.loading('loding···',3)
+  }
 }
 
 export default News;
