@@ -36,20 +36,39 @@ export default [
     name: 'About',
     component: Main,
     meta: {
-      title: '子页',
+      title: '数据管理',
       notCache: true,
       name:'2'
     },
     children: [
       {
+        path: '/uploadExcel_page',
+        name: 'uploadExcel_page',
+        meta: {
+          title: '导入数据',
+          name: '2-1'
+        },
+        component: () => import('@/views/Excel/uploadExcel.vue')
+      },
+      {
         path: '/about_page',
         name: 'about_page',
         meta: {
-          title: '子页',
-          name: '2-1'
+          title: '人员管理',
+          name: '2-2'
+        },
+        component: () => import('@/views/About/About.vue')
+      },
+      {
+        path: '/about_page',
+        name: 'about_page',
+        meta: {
+          title: '仓库管理',
+          name: '2-3'
         },
         component: () => import('@/views/About/About.vue')
       }
+      
     ]
   }
 ]

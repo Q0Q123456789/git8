@@ -56,24 +56,24 @@ export default {
   components: {},
   mounted() {},
   methods: {
-    ...mapActions([
-      'handleLogin',
-      'getUserInfo'
-    ]),
+    ...mapActions(["handleLogin", "getUserInfo"]),
     handleSubmit(name) {
       const that = this;
       const data = {
         username: this.formInline.username,
         password: this.formInline.password
-      }
+      };
       that.$refs[name].validate(valid => {
         if (valid) {
           // that.$Message.success("Success!");
           this.handleLogin(data).then(res => {
-            if (res.responseCode == '10001') {
-              
+            if (res.responseCode == "10001") {
+              console.log(res);
+              this.$router.push({
+                name: "home_page"
+              });
             } else {
-              that.$Message.error(res.responseMsg)
+              that.$Message.error(res.responseMsg);
             }
           });
         } else {
