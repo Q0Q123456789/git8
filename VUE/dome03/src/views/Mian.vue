@@ -1,14 +1,14 @@
 <template>
 <div id='mian'>
     <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
-        <Menu accordion :active-name="activeName" theme="dark" width="auto" :open-names="openName" >
-            <Submenu  v-for="(item,index) in routes" v-if="!item.hidden&&item.children" :key="index" :name="item.meta.name">
+        <Menu  ref="side_menu" :active-name="activeName" theme="dark" width="auto" :open-names="openName" @on-open-change='initTab' accordion>
+            <Submenu  v-for="(item,index) in routes" v-if="!item.hidden&&item.children" :key="index" :name="item.meta.name" >
                 <template slot="title">
-                    <Icon type="ios-navigate"></Icon>
+                    <Icon :type="item.meta.ioc"></Icon>
                     {{item.meta.title}}
                 </template>
                 <MenuItem v-for="(iten,index) in item.children" :name="iten.meta.name" :key="index">
-                    <router-link :to="iten.path">{{iten.meta.title}}</router-link>
+                    <router-link :to="iten.path" >{{iten.meta.title}}</router-link>
                 </MenuItem>
             </Submenu>
         </Menu>
@@ -36,8 +36,8 @@ export default {
   name: "mian",
   data() {
     return {
-      activeName: 1,
-      openName: ["1"],
+      activeName: 1-1,
+      openName: ['1'],
       time: ""
     };
   },
@@ -69,12 +69,25 @@ export default {
     setInterval(function() {
       that.getTime();
     }, 999);
+    that.Navigation(); //刷新保持导航栏选中状态；
   },
   methods: {
     getTime() {
       let that = this;
       let d = new Date();
       that.time = d.toLocaleTimeString();
+    },
+    Navigation() {
+      let meta = this.$route.meta;
+      this.openName.splice(0,1,meta.husband)
+      this.activeName = meta.name;
+      this.$nextTick(function() {
+        this.$refs.side_menu.updateOpened();
+        this.$refs.side_menu.updateActiveName();
+      });
+    },
+    initTab(name){
+      console.log(name)
     }
   }
 };
@@ -87,7 +100,7 @@ export default {
   .ivu-menu {
     .ivu-menu-item.ivu-menu-item-active.ivu-menu-item-selected {
       background: orangered !important;
-      a{
+      a {
         color: #fff;
         width: 100%;
         height: 100%;

@@ -17,7 +17,8 @@ export default [
       hideInMenu: true,
       notCache: true,
       title: '首页',
-      name:'1'
+      name:'1',
+      ioc:'ios-navigate'
     },
     children: [
       {
@@ -25,6 +26,7 @@ export default [
         name: 'home_page',
         meta: {
           title: '首页',
+          husband:'1',
           name: '1-1'
         },
         component: () => import('@/views/Home/Home.vue')
@@ -38,7 +40,8 @@ export default [
     meta: {
       title: '数据管理',
       notCache: true,
-      name:'2'
+      name:'2',
+      ioc:'ios-keypad'
     },
     children: [
       {
@@ -46,6 +49,7 @@ export default [
         name: 'uploadExcel_page',
         meta: {
           title: '导入数据',
+          husband:'2',
           name: '2-1'
         },
         component: () => import('@/views/Excel/uploadExcel.vue')
@@ -55,6 +59,7 @@ export default [
         name: 'about_page',
         meta: {
           title: '人员管理',
+          husband:'2',
           name: '2-2'
         },
         component: () => import('@/views/About/About.vue')
@@ -64,6 +69,7 @@ export default [
         name: 'about_page',
         meta: {
           title: '仓库管理',
+          husband:'2',
           name: '2-3'
         },
         component: () => import('@/views/About/About.vue')

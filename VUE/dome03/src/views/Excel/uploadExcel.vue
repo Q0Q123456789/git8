@@ -1,10 +1,12 @@
 <template>
 <div id='excel'>
-    <Card title="导入EXCEL">
+    <Card title="导入EXCEL" >
+        
       <Row>
         <Upload action="" :before-upload="handleBeforeUpload" accept=".xls, .xlsx">
           <Button icon="ios-cloud-upload-outline" :loading="uploadLoading" @click="handleUploadFile">上传文件</Button>
         </Upload>
+        <Button type="primary" @click="upload()">提交</Button> 
       </Row>
       <Row>
         <div class="ivu-upload-list-file" v-if="file !== null">
@@ -109,6 +111,9 @@ export default {
         this.tableLoading = false;
         this.showRemoveFile = true;
       };
+    },
+    upload(){
+        console.log(this.tableData)
     }
   }
 };
