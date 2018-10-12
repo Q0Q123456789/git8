@@ -112,8 +112,39 @@ export default {
         this.showRemoveFile = true;
       };
     },
-    upload(){
-        console.log(this.tableData)
+    upload() {
+      var Alist = new Array();
+      this.tableData.map(function(i) {
+        Alist.push({
+          name: i.名称,
+          number: i.数量,
+          colorNumber: i.色号,
+          Specifications: i.规格
+        });
+      });
+      this.$Ajax
+        .POST("/performance/model/warehousing", Alist)
+        .then(res => {
+          console.log(res);
+        });
+    },
+    Transformation(name) {
+      let txt = "";
+      switch (name) {
+        case "名称":
+          txt = "Name";
+          break;
+        case "数量":
+          txt = "Number";
+          break;
+        case "色号":
+          txt = "ColorNumber";
+          break;
+        case "规格":
+          txt = "Specifications";
+          break;
+      }
+      return txt;
     }
   }
 };

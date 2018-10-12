@@ -5,8 +5,9 @@ import store from './store'
 import './registerServiceWorker'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-
+import Ajax from '@/api/ajax';
 Vue.config.productionTip = false
+Vue.prototype.$Ajax = Ajax
 Vue.use(iView);
 
 new Vue({
