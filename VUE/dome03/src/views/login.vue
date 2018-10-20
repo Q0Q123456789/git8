@@ -93,6 +93,8 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  background: url('../assets/img/ROG.png') no-repeat;
+  background-size: 100% 100%;
   .article {
     width: 350px;
     height: 300px;
