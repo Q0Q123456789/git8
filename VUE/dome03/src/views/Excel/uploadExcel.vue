@@ -117,8 +117,10 @@ export default {
       this.tableData.map(function(i) {
         Alist.push({
           name: i.名称,
+          type: i.类型,
           number: i.数量,
           colorNumber: i.色号,
+          purchaseTime: i.进货时间,
           Specifications: i.规格
         });
       });

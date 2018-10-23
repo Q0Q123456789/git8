@@ -68,7 +68,6 @@ export default {
           // that.$Message.success("Success!");
           this.handleLogin(data).then(res => {
             if (res.responseCode == "10001") {
-              console.log(res);
               this.$router.push({
                 name: "home_page"
               });
