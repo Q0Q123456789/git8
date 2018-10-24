@@ -56,26 +56,6 @@ app.warehousing = function (req, res) {
         })
     }
 };
-//详情
-app.find = function(req,res){
-    DB.find("warehousing", {}, function (err, data) {
-        if (err) {
-            config.obj = {
-                responseCode: "10008",
-                responseMsg: err,
-                data: null
-            }
-        } else {
-            config.obj = {
-                responseCode: "10001",
-                responseMsg: "请求成功！",
-                data
-            }
-        }
-        res.json(config.obj);
-    })
-};
-
 module.exports = app;
 console.log('仓库-----加载成功');
 

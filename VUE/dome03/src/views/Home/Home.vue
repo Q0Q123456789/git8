@@ -6,7 +6,7 @@
             <Select v-model="select" slot="prepend" style="width: 80px">
                 <Option v-for="item in cityList" :value="item.value" :key="item.value">{{item.label}}</Option>
             </Select>
-            <Button slot="append" icon="ios-search"></Button>
+            <Button slot="append" icon="ios-search" @click="initElement()"></Button>
         </Input>
       </div>
       <div class="right">
@@ -46,6 +46,9 @@
     <div class="tabel" v-if="isTabel">
       <Table border :columns="columns" :data="list"></Table>
     </div>
+    <div class="page" v-if="isPage">
+      <Page :total="totalCount" @on-change='changePage' show-sizer @on-page-size-change='changePageSize' />
+    </div>
     <Spin size="large" fix v-if="spinShow"></Spin>
     <Modal v-model="modal" width="360">
       <p slot="header" style="color:#f60;text-align:center">
@@ -75,9 +78,13 @@ export default {
       modal_loading: false,
       modal: false,
       isTabel: false,
+      isPage:false,
       umID: "",
       value: "",
       select: "",
+      totalCount: new Number(),
+      pageSize: 10,
+      page: 1,
       cityList: [
         {
           value: "微晶石",
@@ -142,7 +149,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      console.log(params)
+                      console.log(params);
                       // this.show(params.index);
                     }
                   }
@@ -160,7 +167,7 @@ export default {
                     click: () => {
                       this.modal = true;
                       this.umID = params.row._id;
-                      console.log(params.row._id)
+                      console.log(params.row._id);
                     }
                   }
                 },
@@ -181,11 +188,19 @@ export default {
   methods: {
     initElement() {
       let that = this;
+      let params = {
+        name: that.value,
+        type: that.select,
+        pageSize: that.pageSize,
+        page: that.page
+      }
       that.spinShow = true;
-      that.$Ajax.POST("/performance/model/find", {}).then(res => {
+      that.$Ajax.POST("/performance/model/findQuery", params).then(res => {
         that.spinShow = false;
         if (res.data && res.responseCode == "10001") {
-          that.list = res.data;
+          that.list = res.data.list;
+          that.totalCount = res.data.totalCount;//总页数
+          that.isPage = res.data.list.length >= 10 ? true : false; //判断分页是否显示 
         }
       });
     },
@@ -203,6 +218,17 @@ export default {
     },
     change(status) {
       this.isTabel = status;
+    },
+    changePage(val){
+      let that = this;
+      that.page = val;
+      that.initElement();
+    },
+    changePageSize(val){
+      let that = this;
+      that.page = 1;
+      that.pageSize = val;
+      that.initElement();
     }
   }
 };

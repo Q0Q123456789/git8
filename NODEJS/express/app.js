@@ -44,7 +44,6 @@ app.all('*', function (req, res, next) {
 //仓库
 let api  = require('./api/server.js');
 app.post('/performance/model/warehousing',api.warehousing);
-app.post('/performance/model/find',api.find);
 
 //登录
 let login  = require('./api/login.js');
@@ -59,6 +58,7 @@ app.post('/performance/model/upload',upload.upload);
 //查询
 let query  = require('./api/query.js');
 app.post('/performance/model/query',query.query);
+app.post('/performance/model/findQuery',query.findQuery);
 app.get('/performance/model/images',query.images);
 
 //删除
@@ -71,12 +71,8 @@ app.get("/performance/model/hello", function(request, response){
 
 app.get("/performance/model/log", function(request, response){
     var data = fs.readFileSync('./logs/cheese.log');
-
-    console.log(data.toString());
     response.send(data.toString());
 });
-
-
 // Mobile
 app.listen(8030);
 console.log('Listening on port 8030······');

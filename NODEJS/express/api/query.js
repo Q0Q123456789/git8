@@ -51,6 +51,39 @@ app.query = function (req,res) {
         res.json(config.obj);
     })
 };
+//模糊查询
+app.findQuery = function (req,res) {
+    let name = new RegExp(req.body.name,'i');
+    let type = req.body.type;
+    let page = {
+        pageSize:req.body.pageSize,
+        page:req.body.page
+    };
+    DB.find('warehousing',{'type':{$regex:type},'name':{$regex:name}},page,function (err,data) {
+        DB.find('warehousing',{},function (errs,list) {
+            if(err){
+                config.obj = {
+                    responseCode: "10008",
+                    responseMsg: "失败！"
+                }
+            }else {
+                let total = type?data.length:list.length
+                config.obj = {
+                    responseCode: "10001",
+                    responseMsg: "成功！",
+                    data:{
+                        list: data ,
+                        page: req.body.page,
+                        pageSize: req.body.pageSize ,
+                        totalCount: total,
+                        totalPage: Math.ceil(total/req.body.pageSize)
+                    }
+                }
+            }
+            res.json(config.obj);
+        })
+    })
+};
 
 
 module.exports = app;
