@@ -5,6 +5,7 @@ let app = express(); /*实例化使用*/
 
 let ObjectId = require('mongodb').ObjectID;
 let multiparty = require('multiparty');
+let fs = require("fs");
 
 let bodyParser = require('body-parser');
 // 给app配置bodyParser中间件
@@ -31,7 +32,7 @@ app.upload= function (req, res) {
                     responseCode: "10002",
                     responseMsg: '已存在！',
                     es
-                }
+                };
                 res.json(config.obj);
             }else {
                 DB.insertOne('images',param,function (err,data) {
@@ -55,6 +56,32 @@ app.upload= function (req, res) {
                 })
             }
         })
+    })
+};
+//下载文件
+app.download = function (req,res) {
+    console.log(req.query);
+    let filename = req.query.filename +'.log';
+    let file = './logs/' + filename;
+    res.download(file,filename);
+};
+//删除文件
+app.del = function (req , res) {
+    let filename = req.query.filename + '.log';
+    let file = './logs/' + filename;
+    fs.unlink(file,(err) =>{
+        if(err) throw err;
+        res.send('删除成功！');
+    });
+};
+app.uploadFile = function(req,res) {
+    let form = new multiparty.Form();
+    form.uploadDir = 'audio'; /*上传的目录*/
+    form.parse(req,function (err, fields, files) {
+        console.log(err);
+        console.log(fields);
+        console.log(files);
+        res.send('···')
     })
 };
 module.exports = app;

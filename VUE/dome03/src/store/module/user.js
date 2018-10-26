@@ -38,7 +38,7 @@ export default {
         }).then(res => {
           const data = res
           if(data.responseCode == '10001'){
-            commit('setToken', data.token)
+            commit('setToken', data.data.token)
           }
           resolve(data)
         }).catch(err => {

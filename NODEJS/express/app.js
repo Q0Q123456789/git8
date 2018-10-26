@@ -43,18 +43,20 @@ app.all('*', function (req, res, next) {
 
 //仓库
 let api  = require('./api/server.js');
-app.post('/performance/model/warehousing',api.warehousing);
+app.post('/performance/model/warehousing',api.warehousing); //获取仓库信息
 
 //登录
 let login  = require('./api/login.js');
-app.post('/performance/model/login',login.login);
-app.post('/performance/model/addName',login.addName);
-app.get('/performance/model/findUser',login.findUser);
+app.post('/performance/model/login',login.login); //登录
+app.post('/performance/model/addName',login.addName); //注册
+app.get('/performance/model/findUser',login.findUser); //获取用户登录信息
 
 //上传图片
 let upload  = require('./api/upload.js');
 app.post('/performance/model/upload',upload.upload);
-
+app.post('/performance/model/uploadFile',upload.uploadFile); //删除文件
+app.get('/performance/model/download',upload.download); //下载文件
+app.get('/performance/model/del',upload.del); //删除文件
 //查询
 let query  = require('./api/query.js');
 app.post('/performance/model/query',query.query);
@@ -68,11 +70,12 @@ app.post("/performance/model/delete",del.delete);
 app.get("/performance/model/hello", function(request, response){
     response.send("hello!");
 });
-
+//获取日志
 app.get("/performance/model/log", function(request, response){
     var data = fs.readFileSync('./logs/cheese.log');
+    // response.json(data.toString());
     response.send(data.toString());
 });
 // Mobile
-app.listen(8030);
-console.log('Listening on port 8030······');
+app.listen(10086);
+console.log('Listening on port 10086······');

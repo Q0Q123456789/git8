@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 
 import { forEach, hasOneOf, objEqual } from '@/config/tools'
 // cookie保存的天数
-const cookieExpires = 1
+const cookieExpires = 0.2;
 export const TOKEN_KEY = 'token'
 
 export const setToken = (token) => {
@@ -11,7 +11,7 @@ export const setToken = (token) => {
 
 export const getToken = () => {
   const token = Cookies.get(TOKEN_KEY)
-  if (token) return token
+  if (token&&token != 'undefined'&&token != 'null') return token
   else return false
 }
 

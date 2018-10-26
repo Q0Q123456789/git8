@@ -34,7 +34,7 @@
                 </ul>
                 <div class="bottom-button">
                   <ButtonGroup size="small" shape="circle">
-                      <Button type="primary">编辑</Button>
+                      <Button type="primary" @click="edit(item)">编辑</Button>
                       <Button type="error" @click="modal = true,umID = item._id">删除</Button>
                   </ButtonGroup>
                 </div>
@@ -62,12 +62,13 @@
           <Button type="error" size="large" long :loading="modal_loading" @click="V_delete(umID)">删除</Button>
       </div>
     </Modal>
+    <vm-user v-if="userEdit.isHide" :userEdit='userEdit' @EditReturn = 'EditReturn'></vm-user>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import userEdit from "@/components/userEdit.vue";
 
 export default {
   name: "home_page",
@@ -78,7 +79,7 @@ export default {
       modal_loading: false,
       modal: false,
       isTabel: false,
-      isPage:false,
+      isPage: false,
       umID: "",
       value: "",
       select: "",
@@ -149,8 +150,9 @@ export default {
                   },
                   on: {
                     click: () => {
-                      console.log(params);
-                      // this.show(params.index);
+                      this.userEdit.list = [];
+                      this.userEdit.isHide = true;
+                      this.userEdit.list.push(params.row);
                     }
                   }
                 },
@@ -167,7 +169,6 @@ export default {
                     click: () => {
                       this.modal = true;
                       this.umID = params.row._id;
-                      console.log(params.row._id);
                     }
                   }
                 },
@@ -176,11 +177,15 @@ export default {
             ]);
           }
         }
-      ]
+      ],
+      userEdit: {
+        isHide: false,
+        list: []
+      }
     };
   },
   components: {
-    HelloWorld
+    "vm-user": userEdit
   },
   mounted() {
     this.initElement();
@@ -193,14 +198,14 @@ export default {
         type: that.select,
         pageSize: that.pageSize,
         page: that.page
-      }
+      };
       that.spinShow = true;
       that.$Ajax.POST("/performance/model/findQuery", params).then(res => {
         that.spinShow = false;
         if (res.data && res.responseCode == "10001") {
           that.list = res.data.list;
-          that.totalCount = res.data.totalCount;//总页数
-          that.isPage = res.data.list.length >= 10 ? true : false; //判断分页是否显示 
+          that.totalCount = res.data.totalCount; //总页数
+          that.isPage = res.data.totalCount >= 10 ? true : false; //判断分页是否显示
         }
       });
     },
@@ -219,16 +224,26 @@ export default {
     change(status) {
       this.isTabel = status;
     },
-    changePage(val){
+    changePage(val) {
       let that = this;
       that.page = val;
       that.initElement();
     },
-    changePageSize(val){
+    changePageSize(val) {
       let that = this;
       that.page = 1;
       that.pageSize = val;
       that.initElement();
+    },
+    edit(val) {
+      let that = this;
+      that.userEdit.list = [];
+      that.userEdit.isHide = true;
+      that.userEdit.list.push(val);
+    },
+    EditReturn(val){
+      this.userEdit.isHide = val;
+      // console.log(this.userEdit.isHide)
     }
   }
 };
@@ -243,6 +258,9 @@ export default {
     .right {
       padding-top: 5px;
     }
+  }
+  .page {
+    padding-top: 16px;
   }
   .code-col-padbottom {
     padding-bottom: 16px;

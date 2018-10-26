@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 
 app.delete = function(req ,res){
     let item = req.body;
-    console.log(req.body);
     DB.deleteMany("warehousing",{_id:ObjectId(item.id)},function (err,data) {
         if (err) {
             config.obj = {
