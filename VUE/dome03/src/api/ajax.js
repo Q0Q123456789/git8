@@ -1,11 +1,9 @@
 import axios from '@/config/api.request'
 const ajax = {
-    GET(url, access) {
+    GET(url, params) {
         return axios.request({
             url: url,
-            params: {
-                access
-            },
+            params,
             method: 'get'
         })
     },

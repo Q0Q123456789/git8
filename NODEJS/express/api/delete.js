@@ -6,12 +6,6 @@ let ObjectId = require('mongodb').ObjectID;
 let app = express.Router(); /*实例化使用*/
 let fs = require("fs");
 
-let bodyParser = require('body-parser');
-// 给app配置bodyParser中间件
-// 通过如下配置再路由种处理request时，可以直接获得post请求的body部分
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 app.delete = function(req ,res){
     let item = req.body;
     DB.deleteMany("warehousing",{_id:ObjectId(item.id)},function (err,data) {

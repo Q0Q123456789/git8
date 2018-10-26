@@ -19,11 +19,6 @@ let LogFile = log4js.getLogger('cheese');
 // LogFile.error('In This Test log-dir is : \'./logs/log_test/\'');
 
 let app = express.Router(); /*实例化使用*/
-let bodyParser = require('body-parser');
-// 给app配置bodyParser中间件
-// 通过如下配置再路由种处理request时，可以直接获得post请求的body部分
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 let token,UserName;
 
 //用户登录

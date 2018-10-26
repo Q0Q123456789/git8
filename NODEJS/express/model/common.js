@@ -31,4 +31,19 @@ common.sha256 = function(parameter){
     let encryption = sha256.update(parameter).digest("hex");
     return encryption;
 };
+common.folder = function (val) {
+    let value = val.substring(val.lastIndexOf('.'));
+    let img = value === '.png' || value === '.jpg' || value === '.gif';
+    let audio = value === '.mp3' || value === '.wmv' || value === '.wav' || value === '.mid' || value === '.mp4' || value === '.avi';
+    let word = value === '.txt' || value === '.doc' || value === '.wps' || value === '.xls' || value === '.pdf' || value === '.ppt' || value === '.xlsx' || value === '.docx' || value === '.pptx';
+    let folder = '';
+    if(img) {
+      folder = '/images/';
+    } else if (audio) {
+      folder = '/audio/';
+    } else if (word) {
+      folder = '/word/';
+    }
+    return folder;
+};
 module.exports = common;

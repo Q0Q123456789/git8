@@ -28,6 +28,7 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/upload",express.static("upload"));
+app.use("/audio",express.static("audio"));
 
 //设置跨域访问
 app.all('*', function (req, res, next) {
@@ -54,9 +55,9 @@ app.get('/performance/model/findUser',login.findUser); //获取用户登录信�
 //上传图片
 let upload  = require('./api/upload.js');
 app.post('/performance/model/upload',upload.upload);
-app.post('/performance/model/uploadFile',upload.uploadFile); //删除文件
+app.post('/performance/model/uploadFile',upload.uploadFile); //上传文件
 app.get('/performance/model/download',upload.download); //下载文件
-app.get('/performance/model/del',upload.del); //删除文件
+app.post('/performance/model/del',upload.del); //删除文件
 //查询
 let query  = require('./api/query.js');
 app.post('/performance/model/query',query.query);
