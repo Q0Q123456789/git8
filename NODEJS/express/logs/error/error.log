@@ -1,0 +1,34 @@
+[2018-11-04T21:01:14.414][ERROR  17244  login] [ { _id: 5b0a0e16b872182a34c66ab8,
+    username: 'admin',
+    password: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',
+    addTime: 2018-05-27T01:48:00.000Z,
+    loginTime: '2018-11-4 21:01:14',
+    falseOne: true,
+    phone: '13111111111',
+    weight: '1',
+    access: [ 'summary' ] } ]
+[2018-11-04T21:03:28.492][ERROR  9856  login] [ { _id: 5b0a0e16b872182a34c66ab8,
+    username: 'admin',
+    password: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',
+    addTime: 2018-05-27T01:48:00.000Z,
+    loginTime: '2018-11-4 21:03:28',
+    falseOne: true,
+    phone: '13111111111',
+    weight: '1',
+    access: [ 'summary' ] } ]
+[2018-11-04T21:08:50.486][ERROR  2284  upload] { responseCode: '10001',
+  responseMsg: '成功！',
+  data: 
+   { list: 
+      [ [Object],
+        [Object],
+        [Object],
+        [Object],
+        [Object],
+        [Object],
+        [Object] ],
+     page: 1,
+     pageSize: 10,
+     totalCount: 7,
+     totalPage: 1 } }
+[2018-11-04T21:13:20.129][ERROR  10556  upload] {"responseCode":"10001","responseMsg":"成功！","data":{"list":[{"_id":"5bce9149b4e3b641b017eca0","name":"NHJ8812","model":null,"colorNumber":"fs40","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecaa","name":"NHJ8813","model":null,"colorNumber":"fs41","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecab","name":"NHJ8814","model":null,"colorNumber":"fs42","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecac","name":"NHJ8815","model":null,"colorNumber":"fs43","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecad","name":"NHJ8816","model":null,"colorNumber":"fs44","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecae","name":"NHJ8817","model":null,"colorNumber":"fs45","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecaf","name":"NHJ8818","model":null,"colorNumber":"fs46","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecb0","name":"NHJ8819","model":null,"colorNumber":"fs47","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecb1","name":"NHJ8820","model":null,"colorNumber":"fs48","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"},{"_id":"5bce9149b4e3b641b017ecb2","name":"NHJ8821","model":null,"colorNumber":"fs49","number":"100","flieName":null,"flieUrl":null,"addTime":"2018-10-23 11:11:05","purchaseTime":"10/23/18","loginTime":"","Specifications":"800*800","type":"全抛釉"}],"page":1,"pageSize":10,"totalCount":10,"totalPage":1}}

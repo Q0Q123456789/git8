@@ -2,13 +2,6 @@ let express = require("express");
 let DB = require('../model/db.js');
 let config = require('../model/config.js');
 
-const log4js = require('log4js');
-log4js.configure({
-    appenders: { cheese: { type: 'file', filename: 'logs/cheese.log' }},
-    categories: { default: { appenders: ['cheese'], level:'error'}}
-});
-
-let LogFile = log4js.getLogger('cheese');
 let ObjectId = require('mongodb').ObjectID;
 
 let app = express.Router(); /*实例化使用*/

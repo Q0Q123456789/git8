@@ -683,3 +683,12 @@
     phone: '13111111111',
     weight: '1',
     access: [ 'summary' ] } ]
+[2018-11-04T20:56:56.437] [ERROR] login - [ { _id: 5b0a0e16b872182a34c66ab8,
+    username: 'admin',
+    password: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',
+    addTime: 2018-05-27T01:48:00.000Z,
+    loginTime: '2018-11-4 20:56:56',
+    falseOne: true,
+    phone: '13111111111',
+    weight: '1',
+    access: [ 'summary' ] } ]

@@ -5,37 +5,24 @@ let common = require('../model/common.js');
 let ObjectId = require('mongodb').ObjectID;
 let fs = require("fs");
 
-const log4js = require('log4js');
-log4js.configure({
-    appenders: { cheese: { type: 'file', filename: 'logs/cheese.log' }},
-    categories: { default: { appenders: ['cheese'], level:'error'}}
-});
-
-let LogFile = log4js.getLogger('cheese');
-// LogFile.trace('This is a Log4js-Test');
-// LogFile.debug('We Write Logs with log4js');
-// LogFile.info('You can find logs-files in the log-dir');
-// LogFile.warn('log-dir is a configuration-item in the log4js.json');
-// LogFile.error('In This Test log-dir is : \'./logs/log_test/\'');
+const logger = require('log4js').getLogger("login");
 
 let app = express.Router(); /*实例化使用*/
 let token,UserName;
 
 //用户登录
 app.login = function (req,res) {
-    LogFile.error(req.body);
     UserName = req.body.username;
     const secret = req.body.password;
     const password = common.sha256(secret);
     DB.updateOne('login',{username: req.body.username},{ $set:{loginTime: new Date().toLocaleString() } } ,function (err , tiem){
         DB.find("login", {username: req.body.username}, function (errs, data) {
-            LogFile.error(errs);
-            LogFile.error(data);
             if (err) {
                 config.obj = {
                     responseCode: "10008",
                     responseMsg: err
-                }
+                };
+                logger.info(config.obj);
             } else {
                 if (data.length === 0) {
                     config.obj = {
@@ -59,6 +46,7 @@ app.login = function (req,res) {
                     token = Token;
                 }
             }
+            logger.error(data);
             res.json(config.obj);
         })
     })

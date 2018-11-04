@@ -1,30 +1,13 @@
 let express = require("express");
-// let config = require('./model/config.js');
-// const log4js = require('log4js');
-// log4js.configure({
-//     appenders: { cheese: { type: 'file', filename: 'logs/cheese.log' }},
-//     categories: { default: { appenders: ['cheese'], level:'error'}}
-// });
 
-// let LogFile = log4js.getLogger('cheese');
-// LogFile.trace('This is a Log4js-Test');
-// LogFile.debug('We Write Logs with log4js');
-// LogFile.info('You can find logs-files in the log-dir');
-// LogFile.warn('log-dir is a configuration-item in the log4js.json');
-// LogFile.error('In This Test log-dir is : \'./logs/log_test/\'');
-
-// let multiparty = require('multiparty');
-// let cookie = require('cookie-parser');
+const log4js = require('log4js');
+log4js.configure('model/log4j.json');
 
 let app = express(); /*实例化使用*/
 let fs = require("fs");
 
-// let Mongodb = require('./model/Mongodb.js');
-// let DB = new Mongodb({
-//     library:'list'
-// });
-
 let bodyParser = require('body-parser');
+app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'trace' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/upload",express.static("upload"));
@@ -72,11 +55,13 @@ app.get("/performance/model/hello", function(request, response){
     response.send("hello!");
 });
 //获取日志
-app.get("/performance/model/log", function(request, response){
-    var data = fs.readFileSync('./logs/cheese.log');
-    // response.json(data.toString());
-    response.send(data.toString());
-});
+let logs = require('./api/logs.js');
+app.get("/performance/model/log", logs.logs);
+// app.get("/performance/model/log", function(request, response){
+//     var data = fs.readFileSync('./logs/error/error.log');
+//     // response.json(data.toString());
+//     response.send(data.toString());
+// });
 // Mobile
 app.listen(10086);
 console.log('Listening on port 10086······');

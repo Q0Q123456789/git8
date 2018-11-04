@@ -8,7 +8,6 @@ const ajax = {
         })
     },
     POST(url, data) {
-
         return axios.request({
             url: url,
             data,

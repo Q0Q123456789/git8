@@ -8,6 +8,8 @@ let ObjectId = require('mongodb').ObjectID;
 let multiparty = require('multiparty');
 let fs = require("fs");
 
+const logger = require('log4js').getLogger("upload");
+
 //上传图片
 app.upload= function (req, res) {
     let form = new multiparty.Form();
@@ -81,6 +83,7 @@ app.uploadFile = function(req,res) {
         fs.rename(filePath,dstPath,function(err){
            if(err){
                console.log(err);
+               logger.info(err);
            } else {
                let fileUrl = '/' + dstPath;
                config.obj = {
@@ -88,6 +91,7 @@ app.uploadFile = function(req,res) {
                    responseMsg: "请求成功！",
                    fileUrl:fileUrl
                };
+               logger.error(config.obj);
                res.json(config.obj)
            }
         });

@@ -4,6 +4,9 @@ let config = require('../model/config.js');
 let app = express(); /*实例化使用*/
 
 let ObjectId = require('mongodb').ObjectID;
+
+const logger = require('log4js').getLogger("upload");
+
 //查询图片
 app.images = function (req, res) {
     DB.find("images", {}, function (err, data) {
@@ -34,7 +37,8 @@ app.query = function (req,res) {
             config.obj = {
                 responseCode: "10008",
                 responseMsg: "添加失败！"
-            }
+            };
+            logger.info(config.obj)
         }else {
             config.obj = {
                 responseCode: "10001",
@@ -42,6 +46,7 @@ app.query = function (req,res) {
                 data
             }
         }
+        logger.error(config.obj);
         res.json(config.obj);
     })
 };
@@ -59,9 +64,10 @@ app.findQuery = function (req,res) {
                 config.obj = {
                     responseCode: "10008",
                     responseMsg: "失败！"
-                }
+                };
+                logger.info(config.obj);
             }else {
-                let total = type?data.length:list.length
+                let total = type?data.length:list.length;
                 config.obj = {
                     responseCode: "10001",
                     responseMsg: "成功！",
@@ -74,6 +80,7 @@ app.findQuery = function (req,res) {
                     }
                 }
             }
+            logger.error(JSON.stringify(config.obj));
             res.json(config.obj);
         })
     })
