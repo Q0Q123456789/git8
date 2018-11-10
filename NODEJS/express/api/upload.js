@@ -100,19 +100,27 @@ app.uploadFile = function(req,res) {
                    name: file.originalFilename,
                    fileUrl:fileUrl
                };
-               DB.insertOne('images',param,function (errB,data) {
-                   if (errB) {
-                       logger.info(err);
+               DB.find('images',{'name':file.originalFilename},function (errC,roc) {
+                   if(errC) {
+                       logger.info(errC);
+                       throw errC;
                    } else {
-                       config.obj = {
-                           responseCode: "10001",
-                           responseMsg: "请求成功！",
-                           data: param
-                       }
+                       DB.insertOne('images',param,function (errB,data) {
+                           if (errB) {
+                               logger.info(err);
+                           } else {
+                               config.obj = {
+                                   responseCode: "10001",
+                                   responseMsg: "请求成功！",
+                                   data: param
+                               }
+                           }
+                           logger.error(config.obj);
+                           res.json(config.obj)
+                       });
                    }
-                   logger.error(config.obj);
-                   res.json(config.obj)
                });
+
            }
         });
     })
