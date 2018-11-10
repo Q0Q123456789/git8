@@ -11,7 +11,7 @@ let fs = require("fs");
 const logger = require('log4js').getLogger("upload");
 
 //上传图片
-app.upload= function (req, res) {
+app.upload= function (req, res){
     let form = new multiparty.Form();
     form.uploadDir = 'upload'; /*上传的目录*/
     form.parse(req, function (err, fields, files) {
@@ -56,20 +56,30 @@ app.upload= function (req, res) {
 };
 //下载文件
 app.download = function (req,res) {
+    console.log(req.query);
     let filename = req.query.name;
     let file = '.' + req.query.file;
     res.download(file,encodeURI(filename));
 };
 //删除文件
 app.del = function (req , res) {
+    let name = req.body.name;
     let file = '.'+req.body.file;
-    fs.unlink(file,(err) =>{
-        if(err) throw err;
-        config.obj = {
-            responseCode: "10001",
-            responseMsg: "请求成功！"
-        };
-        res.json(config.obj)
+    DB.deleteMany('images',{'name':name},function (errA,data) {
+        if (errA) {
+            logger.info(errA);
+            throw errA
+        } else {
+            fs.unlink(file,(errB) =>{
+                if(errB) throw errB;
+                config.obj = {
+                    responseCode: "10001",
+                    responseMsg: "请求成功！",
+                    data
+                };
+                res.json(config.obj)
+            });
+        }
     });
 };
 app.uploadFile = function(req,res) {
@@ -80,22 +90,32 @@ app.uploadFile = function(req,res) {
         let uploadName = common.folder(file.originalFilename);
         let filePath = file.path;
         let dstPath = 'upload'+ uploadName + file.originalFilename;
-        fs.rename(filePath,dstPath,function(err){
-           if(err){
-               console.log(err);
-               logger.info(err);
+        fs.rename(filePath,dstPath,function(errA){
+           if(errA){
+               console.log(errA);
+               logger.info(errA);
            } else {
                let fileUrl = '/' + dstPath;
-               config.obj = {
-                   responseCode: "10001",
-                   responseMsg: "请求成功！",
+               let param = {
+                   name: file.originalFilename,
                    fileUrl:fileUrl
                };
-               logger.error(config.obj);
-               res.json(config.obj)
+               DB.insertOne('images',param,function (errB,data) {
+                   if (errB) {
+                       logger.info(err);
+                   } else {
+                       config.obj = {
+                           responseCode: "10001",
+                           responseMsg: "请求成功！",
+                           data: param
+                       }
+                   }
+                   logger.error(config.obj);
+                   res.json(config.obj)
+               });
            }
         });
     })
 };
 module.exports = app;
-console.log('附件-----加载成功！');
+console.log('附件-----加载成功');

@@ -31,9 +31,11 @@ export default {
     },
     //删除
     remove(file, fileList){
+      console.log(file)
       let that = this;
       let params = {
-        file:file.response.fileUrl
+        name:file.response.data.name,
+        file:file.response.data.fileUrl
       }
       that.$Ajax.POST('/performance/model/del',params).then( res => {
         console.log(res)
@@ -50,7 +52,6 @@ export default {
         console.log(res)
       })
     }
-
   }
 };
 </script>

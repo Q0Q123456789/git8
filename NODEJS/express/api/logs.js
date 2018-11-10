@@ -10,7 +10,7 @@ const logger = require('log4js').getLogger("login");
 let app = express.Router(); /*实例化使用*/
 
 app.logs = function (req, res) {
-    let Catalog = './logs/';
+    let Catalog = './logs/error';
     fs.readdir(Catalog, function(err, files) {
         if (err) {
             throw err;
@@ -18,8 +18,9 @@ app.logs = function (req, res) {
         // files是一个数组
         // 每个元素是此目录下的文件或文件夹的名称
         console.log(files);
-        // response.json(data.toString());
-//     response.send(data.toString());
+        var data = fs.readFileSync('./logs/error/error.log');
+        // res.json(data.toString());
+        res.send(data.toString());
     });
 };
 

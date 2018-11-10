@@ -108,4 +108,4 @@ app.findUser = function (req,res) {
     }
 };
 module.exports = app;
-console.log('登录-----加载成功！');
+console.log('登录-----加载成功');

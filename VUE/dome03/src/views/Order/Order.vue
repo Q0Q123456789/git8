@@ -1,7 +1,8 @@
 <template>
 <div id='Order'>
 编辑订单
-    <center>{{html}}</center>
+    <!-- <center>{{html}}</center> -->
+    <textarea name="" id="" cols="30" rows="10">{{html}}</textarea>
 </div>
 </template>
 <script>
