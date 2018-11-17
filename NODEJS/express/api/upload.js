@@ -105,19 +105,28 @@ app.uploadFile = function(req,res) {
                        logger.info(errC);
                        throw errC;
                    } else {
-                       DB.insertOne('images',param,function (errB,data) {
-                           if (errB) {
-                               logger.info(err);
-                           } else {
-                               config.obj = {
-                                   responseCode: "10001",
-                                   responseMsg: "请求成功！",
-                                   data: param
-                               }
-                           }
-                           logger.error(config.obj);
+                       console.log(roc);
+                       if (roc.length > 0) {
+                           config.obj = {
+                               responseCode: "10002",
+                               responseMsg: "已存在！"
+                           };
                            res.json(config.obj)
-                       });
+                       } else {
+                           DB.insertOne('images',param,function (errB,data) {
+                               if (errB) {
+                                   logger.info(err);
+                               } else {
+                                   config.obj = {
+                                       responseCode: "10001",
+                                       responseMsg: "请求成功！",
+                                       data: param
+                                   }
+                               }
+                               logger.error(config.obj);
+                               res.json(config.obj)
+                           });
+                       }
                    }
                });
 
