@@ -2,12 +2,12 @@
   <div class="home">
     <div class="header">
       <div class="left">
-        <Input v-model="value">
+        <i-Input v-model="value">
             <Select v-model="select" slot="prepend" style="width: 80px">
                 <Option v-for="item in cityList" :value="item.value" :key="item.value">{{item.label}}</Option>
             </Select>
             <Button slot="append" icon="ios-search" @click="initElement()"></Button>
-        </Input>
+        </i-Input>
       </div>
       <div class="right">
         <i-Switch size="large" @on-change="change">
@@ -20,8 +20,8 @@
     <div class="card" v-if="!isTabel">
       <Row :gutter="16" class="code-row-bg">
         <template v-for="item in list">
-          <Col span="4" class="code-col-padbottom"> 
-            <Card >
+          <i-Col span="4" class="code-col-padbottom"> 
+            <Card>
                 <p slot="title">{{item.type}}</p>
                 <ul>
                   <li>
@@ -39,7 +39,7 @@
                   </ButtonGroup>
                 </div>
             </Card>
-          </Col>
+          </i-Col>
         </template>
       </Row>
     </div>
@@ -241,7 +241,7 @@ export default {
       that.userEdit.isHide = true;
       that.userEdit.list.push(val);
     },
-    EditReturn(val){
+    EditReturn(val) {
       this.userEdit.isHide = val;
       // console.log(this.userEdit.isHide)
     }

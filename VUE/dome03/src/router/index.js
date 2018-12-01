@@ -3,7 +3,10 @@ import Router from 'vue-router'
 import routes from './routers'
 import store from '@/store'
 import iView from 'iview'
-import { getToken, canTurnTo } from '@/config/util'
+import {
+  getToken,
+  canTurnTo
+} from '@/config/util'
 
 Vue.use(Router)
 const router = new Router({
@@ -38,7 +41,8 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-router.afterEach(to => {
+router.afterEach((to) => {
+  console.log(to)
   iView.LoadingBar.finish()
   window.scrollTo(0, 0)
 })

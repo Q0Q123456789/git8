@@ -1,7 +1,6 @@
 <template>
 <div id='excel'>
     <Card title="导入EXCEL" >
-        
       <Row>
         <Upload action="" :before-upload="handleBeforeUpload" accept=".xls, .xlsx">
           <Button icon="ios-cloud-upload-outline" :loading="uploadLoading" @click="handleUploadFile">上传文件</Button>
@@ -124,11 +123,9 @@ export default {
           Specifications: i.规格
         });
       });
-      this.$Ajax
-        .POST("/performance/model/warehousing", Alist)
-        .then(res => {
-          console.log(res);
-        });
+      this.$Ajax.POST("/performance/model/warehousing", Alist).then(res => {
+        console.log(res);
+      });
     },
     Transformation(name) {
       let txt = "";

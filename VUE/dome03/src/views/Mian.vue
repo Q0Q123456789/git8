@@ -36,8 +36,8 @@ export default {
   name: "mian",
   data() {
     return {
-      activeName: 1-1,
-      openName: ['1'],
+      activeName: 1 - 1,
+      openName: ["1"],
       time: ""
     };
   },
@@ -79,15 +79,15 @@ export default {
     },
     Navigation() {
       let meta = this.$route.meta;
-      this.openName.splice(0,1,meta.husband)
+      this.openName.splice(0, 1, meta.husband);
       this.activeName = meta.name;
       this.$nextTick(function() {
         this.$refs.side_menu.updateOpened();
         this.$refs.side_menu.updateActiveName();
       });
     },
-    initTab(name){
-      console.log(name)
+    initTab(name) {
+      // console.log(name)
     }
   }
 };

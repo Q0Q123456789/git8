@@ -3,14 +3,14 @@
     <article class="article">
         <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
             <FormItem prop="username">
-                <Input type="text" v-model="formInline.username" placeholder="用户名">
+                <i-Input type="text" v-model="formInline.username" placeholder="用户名">
                     <Icon type="ios-person-outline" slot="prepend"></Icon>
-                </Input>
+                </i-Input>
             </FormItem>
             <FormItem prop="password">
-                <Input type="password" v-model="formInline.password" placeholder="密码">
+                <i-Input type="password" v-model="formInline.password" placeholder="密码">
                     <Icon type="ios-lock-outline" slot="prepend"></Icon>
-                </Input>
+                </i-Input>
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
@@ -92,7 +92,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('../assets/img/ROG.png') no-repeat;
+  background: url("../assets/img/剑侠情缘叁.png") no-repeat;
   background-size: 100% 100%;
   .article {
     width: 350px;

@@ -1,11 +1,11 @@
 import axios from 'axios'
 // import { Spin } from 'iview'
 class HttpRequest {
-  constructor (baseUrl = baseURL) {
+  constructor(baseUrl = baseURL) {
     this.baseUrl = baseUrl
     this.queue = {}
   }
-  getInsideConfig () {
+  getInsideConfig() {
     const config = {
       baseURL: this.baseUrl,
       headers: {
@@ -14,13 +14,13 @@ class HttpRequest {
     }
     return config
   }
-  distroy (url) {
+  distroy(url) {
     delete this.queue[url]
     if (!Object.keys(this.queue).length) {
       // Spin.hide()
     }
   }
-  interceptors (instance, url) {
+  interceptors(instance, url) {
     // 请求拦截
     instance.interceptors.request.use(config => {
       // 添加全局的loading...
@@ -36,13 +36,13 @@ class HttpRequest {
     instance.interceptors.response.use(res => {
       this.distroy(url)
       // const { data, status } = res
-      return res.data//{ data:data, status}
+      return res.data //{ data:data, status}
     }, error => {
       this.distroy(url)
       return Promise.reject(error)
     })
   }
-  request (options) {
+  request(options) {
     const instance = axios.create()
     options = Object.assign(this.getInsideConfig(), options)
     this.interceptors(instance, options.url)

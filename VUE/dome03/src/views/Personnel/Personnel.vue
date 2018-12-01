@@ -1,9 +1,11 @@
 <template>
 <div id='personnel'>
     <Table border :columns="columns" :data="data6"></Table>
+    <vtree></vtree>
 </div>
 </template>
 <script>
+import vtree from "../../components/tree";
 export default {
   name: "personnel",
   data() {
@@ -84,7 +86,7 @@ export default {
           name: "John Brown",
           age: 18,
           address: "New York No. 1 Lake Park",
-          txt:'123123213'
+          txt: "123123213"
         },
         {
           name: "Jim Green",
@@ -104,17 +106,17 @@ export default {
       ]
     };
   },
-  components: {},
+  components: { vtree },
   mounted() {},
   methods: {
     show(index) {
-    //   this.$Modal.info({
-    //     title: "User Info",
-    //     content: `Name：${this.data6[index].name}<br>Age：${
-    //       this.data6[index].age
-    //     }<br>Address：${this.data6[index].address}`
-    //   });
-        console.log(this.data6[index]);
+      //   this.$Modal.info({
+      //     title: "User Info",
+      //     content: `Name：${this.data6[index].name}<br>Age：${
+      //       this.data6[index].age
+      //     }<br>Address：${this.data6[index].address}`
+      //   });
+      console.log(this.data6[index]);
     },
     remove(index) {
       this.data6.splice(index, 1);

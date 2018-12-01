@@ -67,7 +67,7 @@ app.findQuery = function (req,res) {
                 };
                 logger.info(config.obj);
             }else {
-                let total = type?data.length:list.length;
+                let total = (type || req.body.name) ? data.length : list.length;
                 config.obj = {
                     responseCode: "10001",
                     responseMsg: "成功！",
