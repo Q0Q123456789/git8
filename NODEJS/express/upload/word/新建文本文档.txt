@@ -1,0 +1,61 @@
+mesbpjksvuxlbhce
+
+nginx命令
+pkill -9 nginx
+nginx     ---启动
+nginx -s reload  ---重启
+  
+net start MongoDB
+/etc/nginx
+/usr/share/nginx/html
+
+/var/www/html
+
+pm2 start app.js
+pm2 stop api
+
+vi ?/etc/yum.repos.d/nginx.repo
+
+[nginx]
+name=nginx 
+repo
+baseurl=http://nginx.org/packages/centos/7/x86_64/
+
+gpgcheck=0
+
+enabled=1
+
+vi /etc/yum.repos.d/mongodb-org-4.0.2.repo
+
+[mongodb-org-4.0.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.0.2.asc
+
+CREATE USER 'admin'@'%' IDENTIFIED BY 'Wangxuan_1734';
+GRANT ALL ON *.* TO '[用户名]'@'%';
+
+
+ln -s /usr/local/node-v8.12.0-linux-x64/bin/node /usr/local/bin/node
+ln -s /usr/local/node-v8.12.0-linux-x64/bin/npm /usr/local/bin/npm
+ln -s /usr/local/node-v8.12.0-linux-x64/node_modules/pm2/bin/pm2 /usr/local/bin
+
+
+ drop user '[Wxroot]'@'%'; 删除用户
+sudo service mysqld start 启动
+service mysqld status 查看Mysql服务状态
+mysql -uroot -p 登录mysql控制台
+
+CREATE USER '[用户名]'@'%' IDENTIFIED BY '[密码]';
+GRANT ALL ON *.* TO '[用户名]'@'%';（ALL表示授予所有权限、*.*表示所有数据库中的所有表、%表示任意IP可以远程连接）
+
+use mysql;
+select host, user, authentication_string, plugin from user;
+
+cd /opt/tomcat/apache-tomcat-8.5.33/bin
+./startup.sh
+
+docker启动
+systemctl start docker 
