@@ -1,8 +1,7 @@
 <template>
-<div id='personnel'>
+  <div id="personnel">
     <Table border :columns="columns" :data="data6"></Table>
-    <vtree></vtree>
-</div>
+  </div>
 </template>
 <script>
 import vtree from "../../components/tree";

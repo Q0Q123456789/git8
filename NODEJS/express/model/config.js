@@ -6,8 +6,8 @@
 //数据库地址
 // var DbUrl='mongodb://localhost:27017/ceramic';   /*操作的数据库*/
 // var DbUrl='mongodb://localhost:27017/XZY_DataStorehouse';
-// var DbUrl='mongodb://localhost:27017/config';
-var DbUrl='mongodb://39.108.168.42:27017/XZY_DataStorehouse';
+var DbUrl='mongodb://localhost:27017/config';
+// var DbUrl='mongodb://39.108.168.42:27017/XZY_DataStorehouse';
 
 var obj = {};
 
