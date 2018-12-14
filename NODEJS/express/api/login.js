@@ -14,6 +14,7 @@ let token,UserName;
 app.login = function (req,res) {
     UserName = req.body.username;
     const secret = req.body.password;
+    console.log(req.body);
     const password = common.sha256(secret);
     DB.updateOne('login',{username: req.body.username},{ $set:{loginTime: new Date().toLocaleString() } } ,function (err , tiem){
         DB.find("login", {username: req.body.username}, function (errs, data) {

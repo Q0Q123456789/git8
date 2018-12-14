@@ -1,36 +1,60 @@
 <template>
-  <div id="Order">
+<div id='Order'>
     <Tabs value="name1">
-      <TabPane label="标签一" name="name1">
-        <a-tree
-          checkable
-          @expand="onExpand"
-          :expandedKeys="expandedKeys"
-          :autoExpandParent="autoExpandParent"
-          v-model="checkedKeys"
-          @select="onSelect"
-          :selectedKeys="selectedKeys"
-          :treeData="treeData1"
-        />
-      </TabPane>
-      <TabPane label="标签二" name="name2">
-        <a-tree-select
-          showSearch
-          style="width: 300px"
-          :value="value"
-          :dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
-          placeholder="Please select"
-          allowClear
-          treeCheckable
-          treeDefaultExpandAll
-          @change="onChange"
-          :showCheckedStrategy="SHOW_PARENT"
-          :treeData="treeData3"
-        ></a-tree-select>
-      </TabPane>
-      <TabPane label="标签三" name="name3"></TabPane>
+        <TabPane label="标签一" name="name1">
+          <div class="tree">
+            <!-- <input class="tree-search-input" type="text" v-model.lazy="searchword" placeholder="search..."/>
+            <button class=" tree-search-btn" type="button" @click="search">GO</button>
+            <v-tree ref='tree' :searchable="true" :data='treeData1' :multiple="true" :tpl='tpl' :halfcheck='true' /> -->
+             <vtree ref="tree"   v-on:value-change='valueChange'  :searchable="true" @node-click='getSelect' @node-select='getSelect' :data='treeData1' :multiple="true"  :halfcheck='true' :allowGetParentNode='true' @ee='init' 
+            ></vtree>
+            <!-- <v-select-tree ></v-select-tree> -->
+          </div>
+        </TabPane>
+        <TabPane label="标签二" name="name2">
+          <a-tree-select
+            showSearch
+            style="width: 300px"
+            :value="value"
+            :dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
+            placeholder='Please select'
+            allowClear
+            treeCheckable
+            treeDefaultExpandAll
+            @change="onChange"
+            :showCheckedStrategy="SHOW_PARENT"
+     :treeData="treeData3"
+          >
+          </a-tree-select>
+        </TabPane>
+        <TabPane label="标签三" name="name3">
+
+           <a-tree-select
+    showSearch
+    style="width: 300px"
+    :value="value"
+    :dropdownStyle="{ maxHeight: '400px', overflow: 'auto' }"
+    placeholder='Please select'
+    allowClear
+    treeDefaultExpandAll
+    treeCheckable
+    @change="onChange"
+  >
+    <a-tree-select-node value='parent 1' title='parent 1' key='0-1'>
+      <a-tree-select-node value='parent 1-0' title='parent 1-0' key='0-1-1'>
+        <a-tree-select-node value='leaf1' title='my leaf' key='random' />
+        <a-tree-select-node value='leaf2' title='your leaf' key='random1' />
+      </a-tree-select-node>
+      <a-tree-select-node value='parent 1-1' title='parent 1-1' key='random2'>
+        <a-tree-select-node value='sss' key='random3'>
+          <b style="color: #08c" slot="title">sss</b>
+        </a-tree-select-node>
+      </a-tree-select-node>
+    </a-tree-select-node>
+  </a-tree-select>
+        </TabPane>
     </Tabs>
-  </div>
+</div>
 </template>
 <script>
 import vtree from "../../components/tree";
@@ -174,20 +198,11 @@ export default {
             }
           ]
         }
-      ],
-      expandedKeys: [],
-      autoExpandParent: true,
-      checkedKeys: [],
-      selectedKeys: []
+      ]
     };
   },
   components: {
     vtree
-  },
-  watch: {
-    checkedKeys(val) {
-      console.log("onCheck", val);
-    }
   },
   mounted() {
     this.data = this.treeData1;
@@ -258,21 +273,6 @@ export default {
     onChange(value) {
       console.log(arguments);
       this.value = value;
-    },
-    onExpand(expandedKeys) {
-      console.log("onExpand", expandedKeys);
-      // if not set autoExpandParent to false, if children expanded, parent can not collapse.
-      // or, you can remove all expanded children keys.
-      this.expandedKeys = expandedKeys;
-      this.autoExpandParent = false;
-    },
-    onCheck(checkedKeys) {
-      console.log("onCheck", checkedKeys);
-      this.checkedKeys = checkedKeys;
-    },
-    onSelect(selectedKeys, info) {
-      console.log("onSelect", info);
-      this.selectedKeys = selectedKeys;
     }
   }
 };
