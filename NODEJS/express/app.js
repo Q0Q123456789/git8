@@ -1,5 +1,6 @@
 let express = require("express");
 
+// 日志
 const log4js = require('log4js');
 log4js.configure('model/log4j.json');
 
@@ -8,6 +9,7 @@ let fs = require("fs");
 
 let bodyParser = require('body-parser');
 app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'trace' }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/upload",express.static("upload"));
@@ -62,6 +64,5 @@ app.get("/performance/model/log", logs.logs);
 //     // response.json(data.toString());
 //     response.send(data.toString());
 // });
-// Mobile
 app.listen(10086);
 console.log('Listening on port 10086······');
