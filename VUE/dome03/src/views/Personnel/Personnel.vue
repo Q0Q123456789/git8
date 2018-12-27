@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-import vtree from "../../components/tree";
 export default {
   name: "personnel",
   data() {

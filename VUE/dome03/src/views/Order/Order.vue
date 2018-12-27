@@ -1,13 +1,5 @@
 <template>
-  <div id="Order">
-    <Tabs value="name1">
-      <TabPane label="标签一" name="name1">
-      </TabPane>
-      <TabPane label="标签二" name="name2">
-      </TabPane>
-      <TabPane label="标签三" name="name3"></TabPane>
-    </Tabs>
-  </div>
+  <div id="Order"></div>
 </template>
 <script>
 export default {
@@ -17,22 +9,16 @@ export default {
       value: [],
       html: "",
       data: [],
-      searchword: "",
+      searchword: ""
     };
   },
   components: {
     vtree
   },
-  watch: {
-
-  },
-  mounted() {
-    this.data = this.treeData1;
-  },
+  watch: {},
+  mounted() {},
   methods: {
     init(value) {
-      console.log(value);
-      this.data = this.treeData2;
       this.$Ajax.GET("/performance/model/log", {}).then(res => {
         this.html = res;
         console.log(res);
