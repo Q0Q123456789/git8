@@ -10,6 +10,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@xkeshi/vue-barcode": "^1.0.0",
     "axios": "^0.18.0",
     "iview": "^3.1.0-rc.2",
     "js-cookie": "^2.2.0",

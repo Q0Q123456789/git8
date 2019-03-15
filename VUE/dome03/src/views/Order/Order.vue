@@ -1,5 +1,7 @@
 <template>
-  <div id="Order"></div>
+  <div id="Order">
+    <barcode value="1234567890" :options="{ displayValue: false }"></barcode>
+  </div>
 </template>
 <script>
 export default {
@@ -12,13 +14,10 @@ export default {
       searchword: ""
     };
   },
-  components: {
-    vtree
-  },
   watch: {},
   mounted() {},
   methods: {
-    init(value) {
+    init() {
       this.$Ajax.GET("/performance/model/log", {}).then(res => {
         this.html = res;
         console.log(res);
