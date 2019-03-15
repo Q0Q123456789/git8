@@ -92,7 +92,7 @@ print(content)
 # str = raw_input("请输入：")
 # print("你输入的内容是: ", str)
 
-
+print('华丽的分割线------------------------------')
 class Employee:
     '所有员工的基类'
     empCount = 0
@@ -108,7 +108,7 @@ class Employee:
     def displayEmployee(self):
         print("Name : ", self.name,  ", Salary: ", self.salary)
 
-
+print(Employee)
 print(Employee.__doc__)
 print(Employee.__name__)
 print(Employee.__module__)
