@@ -5,7 +5,7 @@ const log4js = require('log4js');
 log4js.configure('model/log4j.json');
 
 let app = express(); /*实例化使用*/
-let fs = require("fs");
+// let fs = require("fs");
 
 let bodyParser = require('body-parser');
 app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'trace' }));
@@ -50,6 +50,7 @@ app.post('/performance/model/findQuery',query.findQuery);
 app.get('/performance/model/images',query.images);
 
 //删除
+
 let del = require('./api/delete.js');
 app.post("/performance/model/delete",del.delete);
 
