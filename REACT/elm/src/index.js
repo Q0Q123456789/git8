@@ -4,7 +4,7 @@ import './index.less';
 import { BrowserRouter,Route,Switch} from "react-router-dom";
 import registerServiceWorker from './registerServiceWorker';
 
-import App from './App';
+import App from './App'
 import Home from './components/Home'
     import HomeHeader from'./components/home/HomeHeader'
 import News from './components/News'
