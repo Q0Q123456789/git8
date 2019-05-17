@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { NavBar, Icon ,Popover } from 'antd-mobile';
 import axios from 'axios';
 import './newsDetails.less'
-const Action = require('../../stores/action');
+const Action = require('../../../stores/action');
 
 class newsDetails extends Component {
     constructor(props) {

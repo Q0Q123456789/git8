@@ -36,7 +36,7 @@ class App extends Component {
       } 
       <div className={this.state.visible ?"show":"hide"}>
         <ul className ='Navigation'>
-          <li > < NavLink to = '/' exact activeClassName = "pitchOn" > 首页 </NavLink></li >
+          <li > < NavLink to = '/' exact activeClassName = "pitchOn" > 首页 </NavLink></li>
           <li > < NavLink to = '/News' activeClassName = "pitchOn" > 新闻 </NavLink></li >
           <li > < NavLink to = '/Header' activeClassName = "pitchOn" > 子页 </NavLink></li >
           <li > < NavLink to = '/Footer' activeClassName = "pitchOn" > 子页 </NavLink></li >

@@ -4,7 +4,7 @@ import './header.less'
 
 const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt=""/>;
-const Action = require('../../stores/action');
+const Action = require('../../../stores/action');
 
 class HomeHeader extends Component {
   constructor(props){

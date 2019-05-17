@@ -5,12 +5,12 @@ import { BrowserRouter,Route,Switch} from "react-router-dom";
 import registerServiceWorker from './registerServiceWorker';
 
 import App from './App'
-import Home from './components/Home'
-    import HomeHeader from'./components/home/HomeHeader'
-import News from './components/News'
-    import newsDetails from './components/news/newsDetails'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Home from './components/home/Home'
+    import HomeHeader from'./components/home/detail/HomeHeader'
+import News from './components/news/News'
+    import newsDetails from './components/news/detail/newsDetails'
+import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
 ReactDOM.render(
     <BrowserRouter>
     {/* {renderRoutes(router)} */}
