@@ -19,8 +19,8 @@
     </div>
     <div class="card" v-if="!isTabel">
       <Row :gutter="16" class="code-row-bg">
-        <template v-for="item in list">
-          <i-Col span="4" class="code-col-padbottom"> 
+        <template v-for="(item,index) in list">
+          <i-Col span="4" class="code-col-padbottom" :key="index"> 
             <Card>
                 <p slot="title">{{item.type}}</p>
                 <ul>
