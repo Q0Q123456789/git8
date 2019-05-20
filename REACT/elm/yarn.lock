@@ -6400,6 +6400,23 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-native-orientation@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-orientation/-/react-native-orientation-3.0.0.tgz#91a0a55be2d1f14ec6d0111a3bfbb5550a2e788b"
+  integrity sha1-kaClW+LR8U7G0BEaO/u1VQoueIs=
+
+react-native-signature-canvas@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature-canvas/-/react-native-signature-canvas-1.3.0.tgz#8cbbdfd8058773e7844cae664f9aa33c6c39b6a8"
+  integrity sha512-Yvip9DzRHg31vr/RgiiA2wnqwJlb4Zzngvp+itcQYxCT2nsJQNsNN0u+J0m4HQBNiCR8FGkKuX4ddemeJq+0vQ==
+
+react-native-signature@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature/-/react-native-signature-1.0.0.tgz#8d76eb6effb65feb49a3c99b34c029dfa3e47451"
+  integrity sha1-jXbrbv+2X+tJo8mbNMAp36PkdFE=
+  dependencies:
+    react-native-orientation "3.0.0"
+
 react-native-swipeout@^2.2.2:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/react-native-swipeout/-/react-native-swipeout-2.3.6.tgz#47dac8a835825cf3f2eef9e495574a3d9ab6d3fa"
