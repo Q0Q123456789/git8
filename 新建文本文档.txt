@@ -1,3 +1,10 @@
 root    Wangxuan1734
 
 MySQL   wangxuan001   Wangxuan_1734
+
+
+pm2 deploy ecosystem.json production setup
+
+pm2 deploy ecosystem.json production
+
+netstat -antp
