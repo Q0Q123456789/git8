@@ -27,7 +27,8 @@ class Home extends Component {
         {name:'诚信',vlaue:'11',id:11},
         {name:'友善',vlaue:'12',id:12},
       ],
-      inputValue:''
+      inputValue:'',
+      mess:''
     }
   }
   componentWillMount(){
@@ -52,7 +53,7 @@ class Home extends Component {
       
         <div id='home' className="home">
           <nav className="nav">
-            <SearchBar placeholder="搜索" ref={ref => this.autoFocusInst = ref} onSubmit={value => this.Input(value)}  onBlur={() => console.log(123)} />
+          <SearchBar placeholder="搜索" ref={ref => this.autoFocusInst = ref} onSubmit={value => this.Input(value)} />
           </nav>
           <div className='mian'>
             <div>
@@ -76,6 +77,7 @@ class Home extends Component {
     this.setState({
       inputValue:value
     })
+    console.info('tag', value)
   }
   dateTime(){
     let date = new Date();
