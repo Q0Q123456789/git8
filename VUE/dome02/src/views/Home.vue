@@ -9,7 +9,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
 @Component({
   components: {
     HelloWorld,
@@ -17,11 +16,24 @@ import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 })
 export default class Home extends Vue {
   msg = '张萌你这个吊毛！'
+  lists=  require('./list.json')
   mounted () {
     this.init()
   }
   init(){
-    console.log('hahaha')
+    let map =  {}
+    this.lists.RECORDS.forEach(element => {
+      map[element.areaId] = element
+    });
+    let val = [];
+    this.lists.RECORDS.forEach(function (item) {
+        let parent = map[item.parentId];
+        if (parent) {
+            (parent.children || ( parent.children = [] )).push(item);
+        } else {
+            val.push(item);
+        }
+    })
   }
 }
 </script>
