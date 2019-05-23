@@ -10,6 +10,7 @@ const cors = require('koa2-cors');
 const DB = require('./db/db.js');
 const config = require('./db/config.js');
 const register = require('./api/register.js');
+const common = require('./db/common.js');
 const app = new Koa();
 
 app.use(convert(bodyparser));
@@ -34,6 +35,34 @@ Api.get('/api',async (ctx,next) => {
     });
     ctx.body = config.Success;
 });
+
+Api.get('/query', async (ctx, next) => {
+    let sql = 'SELECT * from T_Area';
+    await DB.find(sql).then(res => {
+        let map = {}
+        res.forEach(element => {
+            map[element.areaId] = element
+        });
+        let val = [];
+        res.forEach(function (item) {
+            let parent = map[item.parentId];
+            if (parent) {
+                (parent.children || (parent.children = [])).push(item);
+            } else {
+                val.push(item);
+            }
+        })
+        config.Success.data = val;
+        
+    }).catch(err => {
+        console.log(err);
+    });
+    ctx.body = config.Success;
+});
+
+
+
+
 
 Api.post('/user',async (ctx ,next) => {
     let sql = 'INSERT into login(name,password) VALUES(?,?)';
