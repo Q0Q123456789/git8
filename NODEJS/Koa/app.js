@@ -37,7 +37,10 @@ Api.get('/api',async (ctx,next) => {
 });
 
 Api.get('/query', async (ctx, next) => {
-    let sql = 'SELECT * from T_Area';
+    let level = ctx.query
+    console.log(ctx.query)
+    let sql = `SELECT * from T_Area where level=${level.level} or parentId=${level.parentId}`;
+    // let sql = 'SELECT * from T_Area';
     await DB.find(sql).then(res => {
         let map = {}
         res.forEach(element => {
@@ -83,7 +86,7 @@ Api.post('/register',register);
 app.use(Api.routes());
 
 app.on('error',function(err,ctx){
-    log.error('server error',err,ctx);
+    console.error('server error',err,ctx);
 });
 
 app.listen(3000);
