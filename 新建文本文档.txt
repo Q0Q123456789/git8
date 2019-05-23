@@ -2,6 +2,8 @@ root    Wangxuan1734
 
 MySQL   wangxuan001   Wangxuan_1734
 
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ÄãµÄÃÜÂë';   ĞŞ¸ÄÃÜÂë²ßÂÔ
+
 
 pm2 deploy ecosystem.json production setup
 
