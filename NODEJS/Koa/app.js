@@ -29,7 +29,6 @@ Api.get('/api',async (ctx,next) => {
     let sql = 'SELECT * from login';
     await DB.find(sql).then(res =>{
         config.Success.data = res;
-        console.log(res);
     }).catch( err => {
         console.log(err);
     });
@@ -38,8 +37,8 @@ Api.get('/api',async (ctx,next) => {
 
 Api.get('/query', async (ctx, next) => {
     let level = ctx.query
-    console.log(ctx.query)
-    let sql = `SELECT * from T_Area where level=${level.level} or parentId=${level.parentId}`;
+    let rutls = level.level ? 'level=' + level.level : 'parentId=' + level.parentId
+    let sql = `SELECT * from T_Area where ${rutls}`;
     // let sql = 'SELECT * from T_Area';
     await DB.find(sql).then(res => {
         let map = {}
@@ -56,20 +55,16 @@ Api.get('/query', async (ctx, next) => {
             }
         })
         config.Success.data = val;
-        
+       
     }).catch(err => {
         console.log(err);
     });
     ctx.body = config.Success;
 });
 
-
-
-
-
-Api.post('/user',async (ctx ,next) => {
-    let sql = 'INSERT into login(name,password) VALUES(?,?)';
-    let params = ['admin1','123456'];
+Api.post('/adduser',async (ctx ,next) => {
+    let sql = 'INSERT into login(user,pass) VALUES(?,?)';
+    let params = ["zhangsan001","123456"];
     let data;
     try {
         data = await DB.update(sql,params);
@@ -78,6 +73,27 @@ Api.post('/user',async (ctx ,next) => {
     } catch (e) {
         console.log(e);
     }
+    ctx.body = config.Success;
+});
+
+Api.post('/login', async (ctx, next) => {
+    let parman = ctx.query;
+    let sql = "select * from login where user='" + parman.name + "'";
+    let data;
+    await DB.find(sql).then(res => {
+        console.log(res)
+        if (res.length === 0) {
+            config.Success.res = '1004'
+            config.Success.smg = '用户不存在'
+        } else if (parman.name === res[0].user && parman.pass === res[0].pass) {
+            config.Success.data = res;
+        }  else if (parman.name === res[0].user && parman.pass !== res[0].pass) {
+            config.Success.res = '1004'
+            config.Success.smg = '密码错误'
+        }
+    }).catch(err => {
+        console.log(err);
+    });
     ctx.body = config.Success;
 });
 //添加用户
