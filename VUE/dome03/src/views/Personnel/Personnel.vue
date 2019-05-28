@@ -104,7 +104,7 @@ export default {
       ]
     };
   },
-  components: { vtree },
+  components: {  },
   mounted() {},
   methods: {
     show(index) {

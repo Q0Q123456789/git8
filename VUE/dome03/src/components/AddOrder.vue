@@ -19,11 +19,12 @@
   </div>
 </template>
 <script>
+import common from '@/config/common.js'
 export default {
   name: "AddOrder",
   data() {
     return {
-      url: "http://127.0.0.1:10086/performance/model/uploadFile",
+      url: common.$Api() + "/performance/model/uploadFile",
       data: {
         a: "123456",
         b: "7890"
