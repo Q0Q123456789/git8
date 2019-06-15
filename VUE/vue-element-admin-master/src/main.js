@@ -19,6 +19,7 @@ import './permission' // permission control
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
+import VueClipboard from 'vue-clipboard2'
 
 /**
  * If you don't want to use mock-server
@@ -37,7 +38,7 @@ Vue.use(Element, {
   size: Cookies.get('size') || 'medium', // set element-ui default size
   i18n: (key, value) => i18n.t(key, value)
 })
-
+Vue.use(VueClipboard)
 // register global utility filters
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])

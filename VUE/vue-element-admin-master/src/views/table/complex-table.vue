@@ -20,9 +20,18 @@
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         {{ $t('table.export') }}
       </el-button>
+      <el-button
+        v-clipboard:copy="sysAppIds"
+        v-clipboard:success="onCopy"
+        v-clipboard:error="onError"
+        class="ml10"
+        type="text"
+        size="medium"
+      >点击复制</el-button>
       <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
         {{ $t('table.reviewer') }}
       </el-checkbox>
+
     </div>
 
     <el-table
@@ -34,7 +43,12 @@
       highlight-current-row
       style="width: 100%;"
       @sort-change="sortChange"
+      @selection-change="handleSelectionChange"
     >
+      <el-table-column
+        type="selection"
+        width="55"
+      />
       <el-table-column :label="$t('table.id')" prop="id" sortable="custom" align="center" width="80">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
@@ -223,7 +237,8 @@ export default {
         timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
         title: [{ required: true, message: 'title is required', trigger: 'blur' }]
       },
-      downloadLoading: false
+      downloadLoading: false,
+      sysAppIds: []
     }
   },
   created() {
@@ -375,6 +390,19 @@ export default {
           return v[j]
         }
       }))
+    },
+    // 复制成功
+    onCopy(e) {
+      console.log(e)
+      console.log(this.sysAppIds)
+    },
+    // 复制失败
+    onError(e) {
+      alert('失败')
+    },
+    handleSelectionChange(val) {
+      console.log(val)
+      this.sysAppIds = val
     }
   }
 }
