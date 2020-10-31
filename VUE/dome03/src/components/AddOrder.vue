@@ -5,9 +5,10 @@
       type="drag"
       :action="url"
       :on-progress="progress"
-      :data="data"
       :on-success="success"
       :on-remove="remove"
+      :data="data"
+      :before-upload="upload"
       :on-preview="preview"
       :default-file-list="defaultList"
     >
@@ -25,16 +26,17 @@ export default {
   data() {
     return {
       url: common.$Api() + "/performance/model/uploadFile",
-      data: {
-        a: "123456",
-        b: "7890"
-      },
+      data: {},
       defaultList: []
     };
   },
   components: {},
   mounted() {},
   methods: {
+    upload(file) {
+      console.log(file);
+      // this.data = file
+    },
     progress(event, file, fileList) {
       console.log(event);
       console.log(file);
@@ -50,7 +52,7 @@ export default {
       console.log(this.fileList);
     },
     //删除
-    remove(file, fileList) {
+    remove(file) {
       console.log(file);
       let that = this;
       let params = {
@@ -71,6 +73,21 @@ export default {
       that.$Ajax.GET("/performance/model/download", params).then(res => {
         console.log(res);
       });
+    },
+    uploadAvatar(avatar) {
+      var url = "http://localhost:3000";
+      console.log(avatar.target.files[0])
+      let file = avatar.target.files[0]
+      let data = new FormData();
+      data.append("file", file, file.name); 
+      data.append('data', 112)
+      console.log(data.get('file'))
+      
+      this.$http.post(url + '/product/zhutu', data).then(function(data) {
+      console.log(data)
+      }, function(response) {
+      console.log(response)
+      })
     }
   }
 };

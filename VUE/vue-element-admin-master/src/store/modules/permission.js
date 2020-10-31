@@ -45,7 +45,7 @@ const mutations = {
     state.routes = constantRoutes.concat(routes)
   }
 }
-
+console.log(state)
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {

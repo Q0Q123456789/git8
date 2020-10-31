@@ -6,6 +6,7 @@ let app = express(); /*实例化使用*/
 
 let ObjectId = require('mongodb').ObjectID;
 let multiparty = require('multiparty');
+let formidable = require('formidable')
 let fs = require("fs");
 
 const logger = require('log4js').getLogger("upload");
@@ -83,24 +84,24 @@ app.del = function (req , res) {
     });
 };
 app.uploadFile = function(req,res) {
-    let form = new multiparty.Form();
+    // let form = new multiparty.Form();
+    let form = new formidable.IncomingForm();
     form.uploadDir = 'upload'; /*上传的目录*/
     form.parse(req,function (err, fields, files) {
-        let file = files.file[0];
-        let uploadName = common.folder(file.originalFilename);
-        let filePath = file.path;
-        let dstPath = 'upload'+ uploadName + file.originalFilename;
+        let file = files.file.name;
+        let uploadName = common.folder(file);
+        let filePath = files.file.path;
+        let dstPath = 'upload'+ uploadName + file;
         fs.rename(filePath,dstPath,function(errA){
            if(errA){
-               console.log(errA);
                logger.info(errA);
            } else {
                let fileUrl = '/' + dstPath;
                let param = {
-                   name: file.originalFilename,
+                   name: file,
                    fileUrl:fileUrl
                };
-               DB.find('images',{'name':file.originalFilename},function (errC,roc) {
+               DB.find('images',{'name':file},function (errC,roc) {
                    if(errC) {
                        logger.info(errC);
                        throw errC;

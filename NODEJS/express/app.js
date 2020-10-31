@@ -50,7 +50,6 @@ app.post('/performance/model/findQuery',query.findQuery);
 app.get('/performance/model/images',query.images);
 
 //删除
-
 let del = require('./api/delete.js');
 app.post("/performance/model/delete",del.delete);
 
@@ -65,5 +64,5 @@ app.get("/performance/model/log", logs.logs);
 //     // response.json(data.toString());
 //     response.send(data.toString());
 // });
-app.listen(10086);
+app.listen(9527);
 console.log('Listening on port 10086······');

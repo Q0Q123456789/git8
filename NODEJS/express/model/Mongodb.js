@@ -7,7 +7,7 @@ let MongoClient=Mongo.MongoClient;
 let ObjectID=Mongo.ObjectID;
 
 let options={
-    host:'mongodb://localhost:27017/',
+    host:'http://39.108.168.42:27017/',
     library:'config'
 }
 

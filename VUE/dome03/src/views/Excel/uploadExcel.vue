@@ -123,7 +123,7 @@ export default {
           Specifications: i.规格
         });
       });
-      this.$Ajax.POST("/performance/model/warehousing", Alist).then(res => {
+      this.$Ajax.POST("/performance/model/uploadFile", Alist).then(res => {
         console.log(res);
       });
     },
